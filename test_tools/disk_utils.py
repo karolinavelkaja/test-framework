@@ -232,6 +232,7 @@ def remove_partitions(device):
         .count(1) \
         .block_size(Size(1, Unit.Blocks4096))\
         .oflag("direct")
+    TestRun.executor.run(f"sleep 1")
     dd.run()
     output = TestRun.executor.run(f"ls {device.system_path}* -1")
     if len(output.stdout.split('\n')) > 1:
