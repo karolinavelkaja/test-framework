@@ -287,8 +287,8 @@ class VolumeGroup:
 
 def get_block_devices_list():
     cmd = f"lsblk -l | awk '{{print $1}}'"
-    devices = TestRun.executor.run_expect_success(cmd).stdout.splitlines()
-    devices_list = list(devices)
+    devices = TestRun.executor.run_expect_success(cmd).stdout
+    devices_list = devices.splitlines()
     devices_list.sort()
 
     return devices_list
